@@ -1,3 +1,6 @@
+" Coloring
+set background=dark
+
 " Minimal remapping for Colemak
 " All combination commands involving these keys persist.
 
