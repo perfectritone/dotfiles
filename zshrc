@@ -51,11 +51,14 @@ source $ZSH/oh-my-zsh.sh
 export TNS_ADMIN="/etc"
 export JRUBY_OPTS="--1.9 -J-XX:MaxPermSize=256m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF --headless -J-XX:+CMSClassUnloadingEnabled -J-XX:+UseConcMarkSweepGC"
 export EDITOR="vim"
+alias vi="vim"
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Darwin' ]]; then
+  # Work Mac
   export CODE_DIR=$HOME/code
 else
+  # Home Arch
   export CODE_DIR=$HOME/projects/zipcar
 fi
 
@@ -82,7 +85,17 @@ alias fbn='find . -name'
 
 alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+alias a="sudo loadkeys us"
+alias z="setxkbmap us"
+alias x="setxkbmap us -variant colemak"
+
+alias ok="$(ssh-agent) ssh-add ~/.ssh/nopass_id_rsa"
+alias ctu='cd ~/projects/zipcar/carsharing-transition-ui;cp ../ojdbc7.jar lib;export TNS_ADMIN=/home/aura/projects/zipcar;rvm use jruby-1.7.5;ok'
+alias zipcar="sudo loadkeys us;sudo openconnect us.vpn.zipcar.com -u dfrey --authgroup=ZipcarVPN-Yubikey;sudo loadkeys colemak"
+
+
 
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local
