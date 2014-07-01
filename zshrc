@@ -90,7 +90,7 @@ alias z="setxkbmap us"
 alias x="setxkbmap us -variant colemak"
 
 alias ok="$(ssh-agent) ssh-add ~/.ssh/nopass_id_rsa"
-alias ctu='cd ~/projects/zipcar/carsharing-transition-ui;cp ../ojdbc7.jar lib;export TNS_ADMIN=/home/aura/projects/zipcar;rvm use jruby-1.7.5;ok'
+alias ctu='cd ~/projects/zipcar/;cp ../ojdbc7.jar lib;export TNS_ADMIN=/home/aura/projects/zipcar;rvm use jruby-1.7.4;ok'
 alias zipcar="sudo loadkeys us;sudo openconnect us.vpn.zipcar.com -u dfrey --authgroup=ZipcarVPN-Yubikey;sudo loadkeys colemak"
 
 if [ -f ~/.zshrc-local ]; then
