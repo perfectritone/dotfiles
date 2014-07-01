@@ -85,8 +85,6 @@ alias fbn='find . -name'
 
 alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 alias a="sudo loadkeys us"
 alias z="setxkbmap us"
 alias x="setxkbmap us -variant colemak"
@@ -95,8 +93,9 @@ alias ok="$(ssh-agent) ssh-add ~/.ssh/nopass_id_rsa"
 alias ctu='cd ~/projects/zipcar/carsharing-transition-ui;cp ../ojdbc7.jar lib;export TNS_ADMIN=/home/aura/projects/zipcar;rvm use jruby-1.7.5;ok'
 alias zipcar="sudo loadkeys us;sudo openconnect us.vpn.zipcar.com -u dfrey --authgroup=ZipcarVPN-Yubikey;sudo loadkeys colemak"
 
-
-
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local
 fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
