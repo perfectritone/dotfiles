@@ -53,11 +53,14 @@ export JRUBY_OPTS="--1.9 -J-XX:MaxPermSize=256m -Xcompile.invokedynamic=false -J
 export EDITOR="vim"
 
 unamestr=`uname`
-if [[ "$unamestr" == 'Darwin' ]]; then
+
+# My Mac
+if [[ $unamestr == 'Darwin' ]]; then
   export CODE_DIR=$HOME/code
   export DYLD_LIBRARY_PATH=~/scripts/instantclient_11_2
-else
-  export CODE_DIR=$HOME/projects/zipcar
+# My CentOS snap
+elif [[ $unamestr == 'Linux' ]]; then
+  export CODE_DIR=/git
 fi
 
 alias c="cd $CODE_DIR"
