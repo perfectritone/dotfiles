@@ -6,8 +6,11 @@ task :install do
   install_oh_my_zsh
   switch_to_zsh
   replace_all = false
-  files = Dir['*'] - %w[Rakefile README README.rdoc LICENSE oh-my-zsh CONFIG bin]
-  files << "oh-my-zsh/plugins/git/git.plugin.zsh"
+
+  all_files = Dir[File.join('**', '*')] - %w[Rakefile README README.rdoc LICENSE CONFIG bin]
+
+  files = all_files.reject { |f| File.directory?(f) }
+
   files.each do |file|
     system %Q{mkdir -p "$HOME/.#{File.dirname(file)}"} if file =~ /\//
     if File.exist?(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"))
