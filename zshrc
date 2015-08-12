@@ -49,21 +49,31 @@ source $ZSH/oh-my-zsh.sh
 
 # export PATH="/Users/dfrey/.rvm/gems/jruby-1.7.6/bin:/Users/dfrey/.rvm/gems/jruby-1.7.6@global/bin:/Users/dfrey/.rvm/rubies/jruby-1.7.6/bin:/Users/dfrey/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin"
 export TNS_ADMIN="/etc"
-export JRUBY_OPTS="--1.9 -J-XX:MaxPermSize=256m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF --headless -J-XX:+CMSClassUnloadingEnabled -J-XX:+UseConcMarkSweepGC"
+export JRUBY_OPTS="--1.9 -J-XX:MaxPermSize=256m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF --headless -J-XX:+CMSClassUnloadingEnabled -J-XX:+UseConcMarkSweepGC --debug"
 export EDITOR="vim"
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Darwin' ]]; then
   export CODE_DIR=$HOME/code
+  export DYLD_LIBRARY_PATH=~/scripts/instantclient_11_2
 else
   export CODE_DIR=$HOME/projects/zipcar
 fi
 
+alias c="cd $CODE_DIR"
 alias rc="cd $CODE_DIR/zipcar-rails-core"
 alias zm="cd $CODE_DIR/zipcar-main"
 alias ctu="cd $CODE_DIR/carsharing-transition-ui"
+alias ba="cd $CODE_DIR/billing-api"
+alias zk="cd $CODE_DIR/zipkernel"
+alias pg="cd $CODE_DIR/payment-gateway-api"
+alias ff="cd $CODE_DIR/franchise-feeds-api"
+alias fa="cd $CODE_DIR/franchise-api"
+alias ck="cd $CODE_DIR/checkpoint"
+alias ca="cd $CODE_DIR/core-api"
 alias authserv="ctu;bundle exec rails s -p 3100 -P tmp/pids/server3100.pid"
 alias pk="pkill -9 java"
+alias vin="cd $CODE_DIR/vindicia-integration"
 
 export PREFERRED_SNAP=83
 snap () {
@@ -82,7 +92,9 @@ alias fbn='find . -name'
 
 alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local

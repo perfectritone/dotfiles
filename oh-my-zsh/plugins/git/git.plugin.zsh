@@ -44,8 +44,8 @@ alias grbc='git rebase --continue'
 compdef _git grbc=git-rebase
 alias grba='git rebase --abort'
 compdef _git grba=git-rebase
-alias gb='git branch'
-compdef _git gb=git-branch
+alias gb='git blame'
+compdef _git gb=git-blame
 alias gba='git branch -a'
 compdef _git gba=git-branch
 alias gcount='git shortlog -sn'
@@ -73,7 +73,9 @@ alias gf='git fetch'
 compdef _git gf=git-fetch
 alias gm='git merge'
 compdef _git gm=git-merge
-alias gmom='git merge origin/master'
+alias gmos='gf;git merge origin/$(current_branch)'
+compdef _git gm=git-merge
+alias gmom='gf;git merge origin/master'
 compdef _git gmom=git-merge
 alias gg='git grep -nI'
 compdef _git gg=git-grep
@@ -140,6 +142,9 @@ compdef _git gcmcr=git-merge
 # Push merge conflict resolution
 alias gpmcr='gaaa;gcmcr;gp'
 
+# Merge remote branch into local branch
+alias gmr='git merge origin/$(current_branch)'
+
 gnp() { git log --grep "$(current_branch)" --patch > review_patches/$(current_branch).patch }
 
 # Pretty log messages
@@ -171,5 +176,5 @@ alias gunignore='git update-index --no-assume-unchanged'
 # list temporarily ignored files
 alias gignored='git ls-files -v | grep "^[[:lower:]]"'
 
-
-
+alias coom='co origin/master'
+alias gfom='gf;coom'
