@@ -66,6 +66,7 @@ fi
 alias c="cd $CODE_DIR"
 alias rc="cd $CODE_DIR/zipcar-rails-core"
 alias zm="cd $CODE_DIR/zipcar-main"
+alias zipsite="cd $CODE_DIR/zipcar-main/zipcar-acs/packages/zipsite/sql"
 alias ctu="cd $CODE_DIR/carsharing-transition-ui"
 alias ba="cd $CODE_DIR/billing-api"
 alias zk="cd $CODE_DIR/zipkernel"
@@ -74,9 +75,9 @@ alias ff="cd $CODE_DIR/franchise-feeds-api"
 alias fa="cd $CODE_DIR/franchise-api"
 alias ck="cd $CODE_DIR/checkpoint"
 alias ca="cd $CODE_DIR/core-api"
-alias authserv="ctu;bundle exec rails s -p 3100 -P tmp/pids/server3100.pid"
-alias pk="pkill -9 java"
 alias vin="cd $CODE_DIR/vindicia-integration"
+
+alias monday="sudo echo;zm;bundle;bundle exec rake monday"
 
 export PREFERRED_SNAP=83
 snap () {
@@ -87,18 +88,18 @@ snap () {
   ssh uscamwebd${num}.boston.zipcar.com
 }
 
-alias testfleet="ctu;RAILS_ENV=test bundle exec rake test_fleets:create"
-
 alias vi="vim"
 
 alias fbn='find . -name'
 
 alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
-#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local
 fi
+
+upgrade() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
+alias sqlplus-me="sqlplus $ORACLE_CONNECT"
