@@ -53,14 +53,15 @@ compdef gcount=git
 alias gcl='git config --list'
 alias gcp='git cherry-pick'
 compdef _git gcp=git-cherry-pick
-alias gl='git log --stat --max-count=10'
-compdef _git glg=git-log
-alias glg='git log --graph --max-count=10'
-compdef _git glgg=git-log
 alias glga='git log --graph --decorate --all'
 compdef _git glgga=git-log
 alias glo='git log --oneline'
 compdef _git glo=git-log
+
+alias gl='glga'
+compdef _git glg=git-log
+glg() { gl -i --grep ".*$*.*" }
+
 alias gss='git status -s'
 compdef _git gss=git-status
 alias ga='git add'
