@@ -1,3 +1,6 @@
+" Coloring
+set background=dark
+
 " Minimal remapping for Colemak
 " All combination commands involving these keys persist.
 
@@ -7,6 +10,19 @@
 " Make a new line with Enter o
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
+
+set autoindent
+
+" Insert one character with a space followed by the character
+nmap <Space> i_<Esc>r
+
+" to switch between tabs like in Firefox
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Show line numbers
 set relativenumber

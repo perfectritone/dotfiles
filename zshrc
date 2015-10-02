@@ -51,6 +51,7 @@ source $ZSH/oh-my-zsh.sh
 export TNS_ADMIN="/etc"
 export JRUBY_OPTS="--1.9 -J-XX:MaxPermSize=256m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF --headless -J-XX:+CMSClassUnloadingEnabled -J-XX:+UseConcMarkSweepGC --debug"
 export EDITOR="vim"
+alias vi="vim"
 
 unamestr=`uname`
 
@@ -58,9 +59,12 @@ unamestr=`uname`
 if [[ $unamestr == 'Darwin' ]]; then
   export CODE_DIR=$HOME/code
   export DYLD_LIBRARY_PATH=~/scripts/instantclient_11_2
-# My CentOS snap
+# My CentOS vm
 elif [[ $unamestr == 'Linux' ]]; then
   export CODE_DIR=/git
+# Arch Linux
+else
+  export CODE_DIR=$HOME/projects/zipcar
 fi
 
 alias c="cd $CODE_DIR"
@@ -72,6 +76,13 @@ alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+alias a="sudo loadkeys us"
+alias z="setxkbmap us"
+alias x="setxkbmap us -variant colemak"
+
+# For arch
+alias ok="$(ssh-agent) ssh-add ~/.ssh/nopass_id_rsa"
 
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local
