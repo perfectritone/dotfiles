@@ -77,7 +77,8 @@ alias ck="cd $CODE_DIR/checkpoint"
 alias ca="cd $CODE_DIR/core-api"
 alias vin="cd $CODE_DIR/vindicia-integration"
 
-alias monday="sudo echo;zm;bundle;bundle exec rake monday"
+alias truncate="ca;RAILS_ENV=test bundle exec rake db:truncate"
+alias monday="sudo echo;zm;bundle;bundle exec rake monday;truncate"
 
 export PREFERRED_SNAP=83
 snap () {
@@ -102,4 +103,7 @@ if [ -f ~/.zshrc-local ]; then
 fi
 
 upgrade() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
+downgrade() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
+upgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
+downgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
 alias sqlplus-me="sqlplus $ORACLE_CONNECT"
