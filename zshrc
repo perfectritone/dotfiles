@@ -64,31 +64,6 @@ elif [[ $unamestr == 'Linux' ]]; then
 fi
 
 alias c="cd $CODE_DIR"
-alias rc="cd $CODE_DIR/zipcar-rails-core"
-alias zm="cd $CODE_DIR/zipcar-main"
-alias zipsite="cd $CODE_DIR/zipcar-main/zipcar-acs/packages/zipsite/sql"
-alias ctu="cd $CODE_DIR/carsharing-transition-ui"
-alias ba="cd $CODE_DIR/billing-api"
-alias zk="cd $CODE_DIR/zipkernel"
-alias pg="cd $CODE_DIR/payment-gateway-api"
-alias ff="cd $CODE_DIR/franchise-feeds-api"
-alias fa="cd $CODE_DIR/franchise-api"
-alias ck="cd $CODE_DIR/checkpoint"
-alias ca="cd $CODE_DIR/core-api"
-alias vin="cd $CODE_DIR/vindicia-integration"
-
-alias truncate="ca;RAILS_ENV=test bundle exec rake db:truncate"
-alias monday="sudo echo;zm;bundle;bundle exec rake monday;truncate"
-
-export PREFERRED_SNAP=83
-snap () {
-  if (( $# == 0 ))
-  then num=$PREFERRED_SNAP
-  else num=$1
-  fi
-  ssh uscamwebd${num}.boston.zipcar.com
-}
-
 alias vi="vim"
 
 alias fbn='find . -name'
@@ -102,8 +77,35 @@ if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local
 fi
 
-upgrade() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
-downgrade() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
-upgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
-downgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
-alias sqlplus-me="sqlplus $ORACLE_CONNECT"
+if [ -n "$ZIPCAR" ]; then
+  alias rc="cd $CODE_DIR/zipcar-rails-core"
+  alias zm="cd $CODE_DIR/zipcar-main"
+  alias zipsite="cd $CODE_DIR/zipcar-main/zipcar-acs/packages/zipsite/sql"
+  alias ctu="cd $CODE_DIR/carsharing-transition-ui"
+  alias ba="cd $CODE_DIR/billing-api"
+  alias zk="cd $CODE_DIR/zipkernel"
+  alias pg="cd $CODE_DIR/payment-gateway-api"
+  alias ff="cd $CODE_DIR/franchise-feeds-api"
+  alias fa="cd $CODE_DIR/franchise-api"
+  alias ck="cd $CODE_DIR/checkpoint"
+  alias ca="cd $CODE_DIR/core-api"
+  alias vin="cd $CODE_DIR/vindicia-integration"
+
+  alias truncate="ca;RAILS_ENV=test bundle exec rake db:truncate"
+  alias monday="sudo echo;zm;bundle;bundle exec rake monday;truncate"
+
+  export PREFERRED_SNAP=83
+  snap () {
+    if (( $# == 0 ))
+    then num=$PREFERRED_SNAP
+    else num=$1
+    fi
+    ssh uscamwebd${num}.boston.zipcar.com
+  }
+
+  upgrade() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
+  downgrade() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
+  upgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
+  downgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
+  alias sqlplus-me="sqlplus $ORACLE_CONNECT"
+fi
