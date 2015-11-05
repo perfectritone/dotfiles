@@ -101,6 +101,7 @@ if [ -n "$ZIPCAR" ]; then
   alias ck="cd $CODE_DIR/checkpoint"
   alias ca="cd $CODE_DIR/core-api"
   alias vin="cd $CODE_DIR/vindicia-integration"
+  alias bs="cd $CODE_DIR/billing-service"
 
   alias truncate="ca;RAILS_ENV=test bundle exec rake db:truncate"
   alias monday="sudo echo;zm;bundle;bundle exec rake monday;truncate"
@@ -119,4 +120,6 @@ if [ -n "$ZIPCAR" ]; then
   upgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
   downgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
   alias sqlplus-me="sqlplus $ORACLE_CONNECT"
+
+  alias remote="java -jar ~/Downloads/tightvnc-1.3.10_javabin/classes/VncViewer.jar HOST 10.144.33.90"
 fi
