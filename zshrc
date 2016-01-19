@@ -33,7 +33,7 @@ DISABLE_AUTO_UPDATE="true"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment following line if you want to  shown in the command execution time stamp 
+# Uncomment following line if you want to  shown in the command execution time stamp
 # in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
@@ -68,7 +68,9 @@ fi
 
 alias c="cd $CODE_DIR"
 
-alias fbn='find . -name'
+fbn() { find . -name \*$*\* }
+tn() { tmux new-session -s $* }
+ta() { tmux attach-session -t $* }
 
 alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
@@ -113,11 +115,20 @@ if [ -n "$ZIPCAR" ]; then
     ssh uscamwebd${num}.boston.zipcar.com
   }
 
-  upgrade() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
-  downgrade() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
+  generate-migration() { bundle exec zc gen upgrade $(current_branch)-$* --primary_sql_file=false }
+  upgrade-perl() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
+  downgrade-perl() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
+
   upgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
   downgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
   alias sqlplus-me="sqlplus $ORACLE_CONNECT"
 
   alias remote="java -jar ~/Downloads/tightvnc-1.3.10_javabin/classes/VncViewer.jar HOST 10.144.33.90"
+
+  setup-oracle-migration() { zm;gf;co origin/staging }
+  upgrade() { setup-oracle-migration;upgrade-perl $1 }
+  downgrade() { setup-oracle-migration;downgrade-perl $1 }
+
+  alias sqlplus-me="rlwrap sqlplus $ORACLE_CONNECT"
+  alias sqlplus-test="rlwrap sqlplus $ORACLE_TEST"
 fi
