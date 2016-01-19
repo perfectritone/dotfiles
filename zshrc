@@ -51,7 +51,6 @@ source $ZSH/oh-my-zsh.sh
 export TNS_ADMIN="/etc"
 export JRUBY_OPTS="--1.9 -J-XX:MaxPermSize=256m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF --headless -J-XX:+CMSClassUnloadingEnabled -J-XX:+UseConcMarkSweepGC --debug"
 export EDITOR="vim"
-alias vi="vim"
 
 unamestr=`uname`
 
@@ -68,7 +67,6 @@ else
 fi
 
 alias c="cd $CODE_DIR"
-alias vi="vim"
 
 alias fbn='find . -name'
 
