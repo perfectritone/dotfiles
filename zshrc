@@ -57,16 +57,11 @@ unamestr=`uname`
 # My Mac
 if [[ $unamestr == 'Darwin' ]]; then
   export CODE_DIR=$HOME/code
-  export DYLD_LIBRARY_PATH=~/scripts/instantclient_11_2
-# My CentOS vm
 elif [[ $unamestr == 'Linux' ]]; then
-  export CODE_DIR=/git
-# Arch Linux
-else
-  export CODE_DIR=$HOME/projects/zipcar
+  export CODE_DIR=$HOME/code
 fi
 
-alias c="cd $CODE_DIR"
+alias n="cd $HOME/notes"
 
 fbn() { find . -name \*$*\* }
 tn() { tmux new-session -s $* }
@@ -77,58 +72,31 @@ alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-alias a="sudo loadkeys us"
+alias zxcvb="sudo loadkeys us"
 alias z="setxkbmap us"
-alias x="setxkbmap us -variant colemak"
+alias x="setxkbmap us -variant colemak;xmodmap ~/.xmodmaprc"
 
-# For arch
-alias ok="$(ssh-agent) ssh-add ~/.ssh/nopass_id_rsa"
+alias v="vim"
+alias rinse="mplayer -playlist http://r3.dgen.net:8000/rinseradio.m3u -cache 100"
+
+
+eval `dircolors ~/.dir_colors`
+bindkey -v
 
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local
 fi
 
-if [ -n "$ZIPCAR" ]; then
-  alias rc="cd $CODE_DIR/zipcar-rails-core"
-  alias zm="cd $CODE_DIR/zipcar-main"
-  alias zipsite="cd $CODE_DIR/zipcar-main/zipcar-acs/packages/zipsite/sql"
-  alias ctu="cd $CODE_DIR/carsharing-transition-ui"
-  alias ba="cd $CODE_DIR/billing-api"
-  alias zk="cd $CODE_DIR/zipkernel"
-  alias pg="cd $CODE_DIR/payment-gateway-api"
-  alias ff="cd $CODE_DIR/franchise-feeds-api"
-  alias fa="cd $CODE_DIR/franchise-api"
-  alias ck="cd $CODE_DIR/checkpoint"
-  alias ca="cd $CODE_DIR/core-api"
-  alias vin="cd $CODE_DIR/vindicia-integration"
-  alias bs="cd $CODE_DIR/billing-service"
-
-  alias truncate="ca;RAILS_ENV=test bundle exec rake db:truncate"
-  alias monday="sudo echo;zm;bundle;bundle exec rake monday;truncate"
-
-  export PREFERRED_SNAP=83
-  snap () {
-    if (( $# == 0 ))
-    then num=$PREFERRED_SNAP
-    else num=$1
-    fi
-    ssh uscamwebd${num}.boston.zipcar.com
-  }
-
-  generate-migration() { bundle exec zc gen upgrade $(current_branch)-$* --primary_sql_file=false }
-  upgrade-perl() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
-  downgrade-perl() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_CONNECT }
-
-  upgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/upgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
-  downgrade-test() { perl $CODE_DIR/zipcar-main/zipcar-acs/downgrade/$*.pl -s zipcar -w /web -c $ORACLE_TEST }
-  alias sqlplus-me="sqlplus $ORACLE_CONNECT"
-
-  alias remote="java -jar ~/Downloads/tightvnc-1.3.10_javabin/classes/VncViewer.jar HOST 10.144.33.90"
-
-  setup-oracle-migration() { zm;gf;co origin/staging }
-  upgrade() { setup-oracle-migration;upgrade-perl $1 }
-  downgrade() { setup-oracle-migration;downgrade-perl $1 }
-
-  alias sqlplus-me="rlwrap sqlplus $ORACLE_CONNECT"
-  alias sqlplus-test="rlwrap sqlplus $ORACLE_TEST"
+if [ "$ROUTEHAPPY" ]; then
+  alias c="cd $CODE_DIR"
+  alias f="cd $CODE_DIR/flights"
+  alias fw="cd $CODE_DIR/flights-web"
+  alias au="cd $CODE_DIR/auth"
+  alias aw="cd $CODE_DIR/api-web"
+  alias a="cd $CODE_DIR/api"
+  alias atc="cd $CODE_DIR/atc"
+  alias p="cd $CODE_DIR/partners"
 fi
+
+
+. /home/dave/code/torch/install/bin/torch-activate

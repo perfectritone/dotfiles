@@ -1,15 +1,11 @@
 " Coloring
-set background=dark
+set background=light
 
 " Minimal remapping for Colemak
 " All combination commands involving these keys persist.
 
 " noremap j k
 " noremap k j
-
-" Make a new line with Enter o
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
 
 set autoindent
 
@@ -72,7 +68,7 @@ set wildmenu
 "   - on first <Tab>, when more than one match, list all matches and complete
 "     the longest common  string
 "   - on second <Tab>, complete the next full match and show menu
-set wildmode=list:longest,full
+set wildmode=longest,list,full
 
 " Ignore node_modules files
 set wildignore+=node_modules/**
@@ -149,7 +145,7 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " Go back to the position the cursor was on the last time this file was edited
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
 
-colorscheme wombat
+colorscheme solarized
 
 set textwidth=80
 
@@ -158,5 +154,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'benmills/vimux'
 Plug 'pgr0ss/vimux-ruby-test'
+Plug 'tpope/vim-rails'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
+
+" Unbind the cursor keys in insert, normal and visual modes.
+" for prefix in ['i', 'n', 'v']
+"   for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+"     exe prefix . "noremap " . key . " <Nop>"
+"    endfor
+"  endfor
