@@ -64,7 +64,7 @@ super + g
 #
 
 # set the window state
-super + {t,shift + t,s,f}
+super + {t,shift + t,l,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
@@ -98,7 +98,8 @@ super + {Left,Right}
 
 # send to the next/prevous desktop
 super + shift + {p,n}
-  bspc node -d {prev,next}
+  bspc node -d {prev,next}; \
+  bspc desktop -f {prev,next}
 
 # focus the last node/desktop
 super + {grave,Tab}

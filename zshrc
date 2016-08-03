@@ -69,8 +69,8 @@ ta() { tmux attach-session -t $* }
 
 alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
 
 alias zxcvb="sudo loadkeys us"
 alias z="setxkbmap us"
@@ -94,6 +94,8 @@ if [ "$ROUTEHAPPY" ]; then
   alias au="cd $CODE_DIR/auth"
   alias aw="cd $CODE_DIR/api-web"
   alias a="cd $CODE_DIR/api"
+  alias h="cd $CODE_DIR/hub"
+  alias hw="cd $CODE_DIR/hub-web"
   alias atc="cd $CODE_DIR/atc"
   alias p="cd $CODE_DIR/partners"
 fi
