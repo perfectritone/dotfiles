@@ -69,36 +69,34 @@ ta() { tmux attach-session -t $* }
 
 alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 alias zxcvb="sudo loadkeys us"
 alias z="setxkbmap us"
 alias x="setxkbmap us -variant colemak;xmodmap ~/.xmodmaprc"
 
-alias v="vim"
 alias rinse="mplayer -playlist http://r3.dgen.net:8000/rinseradio.m3u -cache 100"
-
 
 eval `dircolors ~/.dir_colors`
 bindkey -v
+
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+fi
 
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local
 fi
 
-if [ "$ROUTEHAPPY" ]; then
+if [ "$VALENCE" ]; then
   alias c="cd $CODE_DIR"
-  alias f="cd $CODE_DIR/flights"
-  alias fw="cd $CODE_DIR/flights-web"
-  alias au="cd $CODE_DIR/auth"
-  alias aw="cd $CODE_DIR/api-web"
-  alias a="cd $CODE_DIR/api"
-  alias h="cd $CODE_DIR/hub"
-  alias hw="cd $CODE_DIR/hub-web"
-  alias atc="cd $CODE_DIR/atc"
-  alias p="cd $CODE_DIR/partners"
+  alias v="cd $CODE_DIR/val-valence"
+  alias va="cd $CODE_DIR/val-valence-accounts"
+  alias vd="cd $CODE_DIR/val-valence-docs"
+
+  minitest() { ruby -Ilib -Itest $1 -n /$2/ }
+  alias foredev="bundle exec foreman start -f Procfile.dev"
+
+  alias refresh_permissions="rake user:rp user:p2f"
 fi
-
-
-. /home/dave/code/torch/install/bin/torch-activate

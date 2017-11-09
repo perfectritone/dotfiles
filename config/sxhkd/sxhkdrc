@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + t
-	terminator
+	urxvt
 
 super + f
 	firefox
@@ -16,7 +16,7 @@ super + s
   slack
 
 super + c
-  soundnode
+  chromium
 
 super + o
   spotify
@@ -43,6 +43,10 @@ super + Escape
 super + alt + Escape
 	bspc quit
 
+# poweroff
+super + alt + Enter
+	poweroff
+
 # close and kill
 super + {_,shift + }w
 	bspc node -{c,k}
@@ -64,8 +68,8 @@ super + g
 #
 
 # set the window state
-super + {t,shift + t,l,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+# super + {t,shift + t,l,f}
+# 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {x,y,z}
@@ -99,7 +103,7 @@ super + {Left,Right}
 # send to the next/prevous desktop
 super + shift + {p,n}
   bspc node -d {prev,next}; \
-  bspc desktop -f {prev,next}
+  bspc desktop -f {next}
 
 # focus the last node/desktop
 super + {grave,Tab}
@@ -182,6 +186,6 @@ XF86AudioPlay
   playerctl play-pause
 
 XF86MonBrightnessUp
-  xbacklight -inc 10
+  ~/scripts/brightness.sh +
 XF86MonBrightnessDown
-  xbacklight -dec 10
+  ~/scripts/brightness.sh -

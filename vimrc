@@ -88,8 +88,8 @@ set gdefault
 " Use incremental searching
 set incsearch
 
-" Do not highlight search results
-set nohlsearch
+"Highlight search results
+set hlsearch
 
 " Show line and column number of cursor position in status window
 set ruler
@@ -145,7 +145,7 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " Go back to the position the cursor was on the last time this file was edited
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
 
-colorscheme solarized
+" colorscheme solarized
 
 set textwidth=80
 

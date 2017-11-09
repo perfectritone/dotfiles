@@ -13,8 +13,16 @@ bspc config history_aware_focus  true
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
-bspc rule -a Gimp desktop=^8 state=floating follow=on
-bspc rule -a Chromium desktop=^2
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
+bspc rule -a spotify desktop='^1'
+spotify &
+
+bspc rule -a slack desktop='^3'
+slack &
+
+bspc desktop 2 --focus
+firefox &
+
+bspc desktop 4 --focus
+urxvt &
+
+bspc desktop 3 --focus

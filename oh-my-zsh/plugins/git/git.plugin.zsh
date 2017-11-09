@@ -87,6 +87,10 @@ alias grhh='git reset HEAD --hard'
 alias gclean='git reset --hard && git clean -dfx'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 
+gdel() { git branch -d "$1" }
+gdelremote() { git push origin -d "$1" }
+gdwr() { gdel "$1";gdelremote "$1" }
+
 #remove the gf alias
 #alias gf='git ls-files | grep'
 
@@ -137,7 +141,7 @@ compdef ggpush=git
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
 compdef ggpnp=git
 
-gcm() { git commit -m "$(current_branch) - $*" }
+gcm() { git commit -m "$*" }
 
 alias gcmcr='gcm Merge conflict resolution'
 compdef _git gcmcr=git-merge
