@@ -1,6 +1,3 @@
-" Coloring
-set background=light
-
 " Minimal remapping for Colemak
 " All combination commands involving these keys persist.
 
@@ -15,22 +12,16 @@ nmap <Space> i_<Esc>r
 " to switch between tabs like in Firefox
 nnoremap <C-S-tab> :tabprevious<CR>
 nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
+" nnoremap <C-t>     :tabnew<CR>
 inoremap <C-S-tab> <Esc>:tabprevious<CR>i
 inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
+" inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Show line numbers
 set relativenumber
 
 " Ensure that our plugins work properly
 set nocompatible
-
-" Enable detection, plugins and indenting in one step
-filetype plugin indent on
-
-" Turn syntax highlighting on
-syntax on
 
 " Ignore case if search pattern is all lowercase, case-sensitive otherwise
 set smartcase
@@ -97,12 +88,6 @@ set laststatus=2
 
 " Editing settings
 
-" Convert tabs to 2 spaces
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set expandtab
-
 " Allow backspacing over everything
 set backspace=indent,eol,start
 
@@ -145,19 +130,43 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " Go back to the position the cursor was on the last time this file was edited
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
 
-" colorscheme solarized
+" " Plugin manager dein
+" if &compatible
+"   set nocompatible
+" endif
+" filetype off
+" " append to runtime path
+" set rtp+=/usr/share/vim/vimfiles
+" " initialize dein, plugins are installed to this directory
+" call dein#begin(expand('~/.cache/dein'))
+" " add packages here, e.g:
+" call dein#add('qwelyt/TrippingRobot')
+" " exit dein
+" call dein#end()
+" " auto-install missing packages on startup
+" if dein#check_install()
+"   call dein#install()
+" endif
+" filetype plugin on
 
-set textwidth=80
+" set termguicolors
 
+" :PlugInstall to install
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'benmills/vimux'
-Plug 'pgr0ss/vimux-ruby-test'
-Plug 'tpope/vim-rails'
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'tpope/vim-rails'
+Plug 'iCyMind/NeoSolarized'
+Plug 'mileszs/ack.vim'
+Plug 'elixir-editors/vim-elixir'
+Plug 'kchmck/vim-coffee-script'
 
 call plug#end()
+
+let g:ackprg = 'ag --vimgrep'
+
+colorscheme NeoSolarized
+set background=dark
 
 " Unbind the cursor keys in insert, normal and visual modes.
 " for prefix in ['i', 'n', 'v']
@@ -165,3 +174,15 @@ call plug#end()
 "     exe prefix . "noremap " . key . " <Nop>"
 "    endfor
 "  endfor
+
+" Enable detection, plugins and indenting in one step
+filetype plugin indent on
+
+" Convert tabs to 2 spaces
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+
+" Turn syntax highlighting on
+syntax on

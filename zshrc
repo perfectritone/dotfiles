@@ -47,9 +47,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export PATH="/Users/dfrey/.rvm/gems/jruby-1.7.6/bin:/Users/dfrey/.rvm/gems/jruby-1.7.6@global/bin:/Users/dfrey/.rvm/rubies/jruby-1.7.6/bin:/Users/dfrey/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin"
-export TNS_ADMIN="/etc"
-export JRUBY_OPTS="--1.9 -J-XX:MaxPermSize=256m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF --headless -J-XX:+CMSClassUnloadingEnabled -J-XX:+UseConcMarkSweepGC --debug"
 export EDITOR="vim"
 
 unamestr=`uname`
@@ -67,7 +64,7 @@ fbn() { find . -name \*$*\* }
 tn() { tmux new-session -s $* }
 ta() { tmux attach-session -t $* }
 
-alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
+alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh;source ~/.zshrc'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -87,16 +84,4 @@ fi
 
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local
-fi
-
-if [ "$VALENCE" ]; then
-  alias c="cd $CODE_DIR"
-  alias v="cd $CODE_DIR/val-valence"
-  alias va="cd $CODE_DIR/val-valence-accounts"
-  alias vd="cd $CODE_DIR/val-valence-docs"
-
-  minitest() { ruby -Ilib -Itest $1 -n /$2/ }
-  alias foredev="bundle exec foreman start -f Procfile.dev"
-
-  alias refresh_permissions="rake user:rp user:p2f"
 fi

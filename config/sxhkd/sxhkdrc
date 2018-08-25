@@ -27,6 +27,12 @@ super + v
 XF86Calculator
   galculator
 
+super + q
+  setxkbmap us
+
+super + z
+  setxkbmap us -variant colemak
+
 # program launcher
 super + space
 	dmenu_run
@@ -99,6 +105,10 @@ super + {p,n}
 	bspc desktop -f {prev,next}
 super + {Left,Right}
 	bspc desktop -f {prev,next}
+~button6
+	bspc desktop -f prev
+~button7
+	bspc desktop -f next
 
 # send to the next/prevous desktop
 super + shift + {p,n}

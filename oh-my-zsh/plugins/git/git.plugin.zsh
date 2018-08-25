@@ -44,6 +44,8 @@ alias grc='git rebase --continue'
 compdef _git grc=git-rebase
 alias gra='git rebase --abort'
 compdef _git gra=git-rebase
+alias grom='gf;git rebase -i origin/master'
+compdef _git grom=git-rebase
 alias gb='git blame'
 compdef _git gb=git-blame
 alias gba='git branch -a'
@@ -185,3 +187,4 @@ alias gignored='git ls-files -v | grep "^[[:lower:]]"'
 
 alias coom='co origin/master'
 alias gfom='gf;coom'
+alias comm='co master;git pull'
