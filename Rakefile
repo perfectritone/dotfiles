@@ -7,7 +7,7 @@ task :install do
   switch_to_zsh
   replace_all = false
 
-  all_files = Dir[File.join('**', '*')] - %w[Rakefile README README.rdoc LICENSE CONFIG bin]
+  all_files = Dir[File.join('**', '*')] - %w[Rakefile README README.rdoc LICENSE CONFIG bin env]
 
   files = all_files.reject { |f| File.directory?(f) }
 
@@ -36,6 +36,8 @@ task :install do
       link_file(file)
     end
   end
+
+  puts "Manually copy the files from the `etc` dir to `/etc/`"
 end
 
 def replace_file(file)
