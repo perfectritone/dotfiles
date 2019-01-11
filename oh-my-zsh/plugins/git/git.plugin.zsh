@@ -92,6 +92,7 @@ alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 gdel() { git branch -d "$1" }
 gdelremote() { git push origin -d "$1" }
 gdwr() { gdel "$1";gdelremote "$1" }
+vgg() { vim -p $(git grep -nIl "$1") }
 
 #remove the gf alias
 #alias gf='git ls-files | grep'
