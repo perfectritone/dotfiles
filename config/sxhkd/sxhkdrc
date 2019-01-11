@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + t
-	urxvt
+	terminator
 
 super + f
 	firefox
@@ -196,6 +196,6 @@ XF86AudioPlay
   playerctl play-pause
 
 XF86MonBrightnessUp
-  ~/scripts/brightness.sh +
+  ~/code/intel_backlight_brightness/brightness.sh +
 XF86MonBrightnessDown
-  ~/scripts/brightness.sh -
+  ~/code/intel_backlight_brightness/brightness.sh -
