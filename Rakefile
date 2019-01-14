@@ -7,7 +7,9 @@ task :install do
   switch_to_zsh
   replace_all = false
 
-  all_files = Dir[File.join('**', '*')] - %w[Rakefile README README.rdoc LICENSE CONFIG bin env]
+  Dir.chdir 'local_config'
+
+  all_files = Dir[File.join('**', '*')]
 
   files = all_files.reject { |f| File.directory?(f) }
 
@@ -37,7 +39,7 @@ task :install do
     end
   end
 
-  puts "Manually copy the files from the `etc` dir to `/etc/`"
+  puts "Manually copy the files from the `global_config` to their respective paths from `/``"
 end
 
 def replace_file(file)
