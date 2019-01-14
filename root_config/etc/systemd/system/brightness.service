@@ -1,0 +1,8 @@
+[Unit]
+Description = Setting permissions so user can change screen brightness
+
+[Service]
+ExecStart = /root/scripts/brightness_permissions.sh
+
+[Install]
+WantedBy = multi-user.target
