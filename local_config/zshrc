@@ -75,7 +75,7 @@ alias x="setxkbmap us -variant colemak;xmodmap ~/.xmodmaprc"
 
 alias rinse="mplayer -playlist http://r3.dgen.net:8000/rinseradio.m3u -cache 100"
 
-eval `dircolors ~/.dir_colors`
+eval `dircolors ~/.dircolors.ansi-light`
 bindkey -v
 
 if type nvim > /dev/null 2>&1; then

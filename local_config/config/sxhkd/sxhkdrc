@@ -105,6 +105,10 @@ super + {p,n}
 	bspc desktop -f {prev,next}
 super + {Left,Right}
 	bspc desktop -f {prev,next}
+super + ctrl + {Left,Right}
+	bspc desktop -f {prev,next}
+super + {~button1,~button3}
+	bspc desktop -f {prev,next}
 ~button6
 	bspc desktop -f prev
 ~button7
@@ -113,7 +117,10 @@ super + {Left,Right}
 # send to the next/prevous desktop
 super + shift + {p,n}
   bspc node -d {prev,next}; \
-  bspc desktop -f {next}
+  bspc desktop -f {prev,next}
+super + shift + {Left, Right}
+  bspc node -d {prev,next}; \
+  bspc desktop -f {prev,next}
 
 # focus the last node/desktop
 super + {grave,Tab}
@@ -193,7 +200,7 @@ XF86AudioLowerVolume
   pulseaudio-ctl down
 
 XF86AudioPlay
-  playerctl play-pause
+  pragha --pause
 
 XF86MonBrightnessUp
   ~/code/intel_backlight_brightness/brightness.sh +
