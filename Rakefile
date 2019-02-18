@@ -39,7 +39,13 @@ task :install do
     end
   end
 
-  puts "Manually copy the files from the `global_config` to their respective paths from `/``"
+  print "\nWould you like to backup your package list? [yn]: "
+  case $stdin.gets.chomp
+  when 'y'
+    backup_system_packages
+  end
+
+  puts "\nManually copy the files from the `global_config` to their respective paths from `/``"
 end
 
 def replace_file(file)
@@ -94,4 +100,13 @@ def install_oh_my_zsh
       puts "skipping oh-my-zsh, you will need to change ~/.zshrc"
     end
   end
+end
+
+def backup_system_packages
+  date = Time.now.strftime('%Y-%m-%d')
+  filename = "pkglist-#{date}.txt"
+
+  system %Q{pacman -Qqet > #{filename}}
+  puts "\nWrote package list to #{Dir.pwd}/#{filename}"
+  puts "Install this package list by running `yay -S --needed - < pkglist-YYYY-MM-DD.txt`"
 end
