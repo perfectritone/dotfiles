@@ -162,6 +162,9 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'mileszs/ack.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'kchmck/vim-coffee-script'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'mkitt/tabline.vim'
 
 call plug#end()
 
