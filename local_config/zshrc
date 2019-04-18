@@ -78,7 +78,7 @@ alias rinse="mplayer -playlist http://r3.dgen.net:8000/rinseradio.m3u -cache 100
 eval `dircolors ~/.dircolors.ansi-light`
 bindkey -v
 
-[[ $DISPLAY ]] && source ~/code/scripts/keyboard_off.sh
+[[ $DISPLAY ]] && source ~/.scripts/keyboard_off.sh
 
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local
