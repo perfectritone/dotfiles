@@ -60,13 +60,15 @@ fi
 
 alias n="cd $HOME/notes"
 
-fbn() { find . -name \*$*\* }
+fbn() { find . -iname \*$*\* }
 tn() { tmux new-session -s $* }
 ta() { tmux attach-session -t $* }
 
+alias webcam='mpv av://v4l2:/dev/video0' # press s to take picture
+
 alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh;source ~/.zshrc'
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$HOME/pkgs/tfenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 alias zxcvb="sudo loadkeys us"
@@ -77,6 +79,8 @@ alias rinse="mplayer -playlist http://r3.dgen.net:8000/rinseradio.m3u -cache 100
 
 eval `dircolors ~/.dircolors.ansi-light`
 bindkey -v
+
+#search_and_replace { find ./ -type f -exec sed -i -e 's/$1/$2/g' {} \; }
 
 [[ $DISPLAY ]] && source ~/.scripts/keyboard_off.sh
 

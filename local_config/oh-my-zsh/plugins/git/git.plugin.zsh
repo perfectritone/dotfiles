@@ -59,6 +59,8 @@ alias glga='git log --graph --decorate --stat'
 compdef _git glgga=git-log
 alias glo='git log --oneline'
 compdef _git glo=git-log
+alias gh='git log -p --'
+compdef _git gh=git-log
 
 alias gl='glga'
 compdef _git glg=git-log
@@ -88,6 +90,7 @@ alias grh='git reset HEAD'
 alias grhh='git reset HEAD --hard'
 alias gclean='git reset --hard && git clean -dfx'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
+gshow() { git show --color "$1" | sed -r "s/^([^-+ ]*)[-+ ]/\\1/" | less -r }
 
 gdel() { git branch -d "$1" }
 gdelremote() { git push origin -d "$1" }
@@ -112,13 +115,6 @@ alias gstd='git stash drop'
 # or submodule.
 alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
 
-# Git and svn mix
-alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
-compdef git-svn-dcommit-push=git
-
-alias gsr='git svn rebase'
-alias gsd='git svn dcommit'
-#
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
 #

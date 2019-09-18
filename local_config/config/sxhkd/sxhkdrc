@@ -15,17 +15,14 @@ super + a
 super + s
   slack
 
-super + c
-  chromium
-
 super + o
   spotify
 
 super + v
   vlc
 
-XF86Calculator
-  galculator
+super + m
+  pragha
 
 super + q
   setxkbmap us
@@ -50,7 +47,7 @@ super + alt + Escape
 	bspc quit
 
 # poweroff
-super + alt + Enter
+super + b + Enter
 	poweroff
 
 # close and kill
@@ -58,8 +55,8 @@ super + {_,shift + }w
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
+# super + m
+# 	bspc desktop -l next
 
 # if the current node is automatic, send it to the last manual, otherwise pull the last leaf
 super + y
@@ -76,6 +73,8 @@ super + g
 # set the window state
 # super + {t,shift + t,l,f}
 # 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + shift + {t,o,f}
+	bspc node -t {tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {x,y,z}
@@ -161,13 +160,13 @@ super + ctrl + shift + space
 # resize tiled/floating
 #
 
-# expand the tiled space in the given direction
+# expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
-	bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-# contract the tiled space in the given direction
+# contract a window by moving one of its side inward
 super + alt + shift + {h,j,k,l}
-	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+  bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window
 super + {Left,Down,Up,Right}
@@ -206,3 +205,9 @@ XF86MonBrightnessUp
   ~/code/intel_backlight_brightness/brightness.sh +
 XF86MonBrightnessDown
   ~/code/intel_backlight_brightness/brightness.sh -
+
+super + b
+  notify-send "$(acpi)"
+
+super + d
+  notify-send "$(date)"

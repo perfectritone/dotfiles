@@ -1,5 +1,6 @@
 [global_config]
   focus = system
+  geometry_hinting = True
   title_transmit_bg_color = "#d30102"
 [keybindings]
 [layouts]
