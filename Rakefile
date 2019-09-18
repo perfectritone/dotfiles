@@ -39,6 +39,8 @@ task :install do
     end
   end
 
+  Dir.chdir '..'
+
   print "\nWould you like to backup your package list? [yn]: "
   case $stdin.gets.chomp
   when 'y'
