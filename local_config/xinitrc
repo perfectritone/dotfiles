@@ -5,3 +5,5 @@ systemctl --user import-environment DISPLAY
 setxkbmap us -variant colemak -option caps:escape
 
 exec bspwm
+
+~/.fehbg &
