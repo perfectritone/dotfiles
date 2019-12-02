@@ -13,11 +13,11 @@ bspc config history_aware_focus  true
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
-bspc rule -a spotify desktop=^1
-# spotify &
+bspc rule -a spotify desktop='^1' follow=on focus=on
 
-bspc rule -a slack desktop=^3
-# slack &
+bspc rule -a slack desktop='^3' follow=on focus=on
 
 bspc desktop '^2' --focus
 firefox &
+
+feh --no-fehbg --bg-scale '~/.main_1500.jpg'

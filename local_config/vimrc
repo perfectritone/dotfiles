@@ -165,6 +165,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'mkitt/tabline.vim'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -191,3 +192,6 @@ set expandtab
 
 " Turn syntax highlighting on
 syntax enable
+
+:command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
+nnoremap <C-F> :Ggr <cword><CR>
