@@ -1,0 +1,18 @@
+[Unit]
+Description=MySQL database server
+After=syslog.target
+
+[Service]
+User=mysql
+Group=mysql
+
+Environment="LD_LIBRARY_PATH=/usr/old_lib"
+
+ExecStart=/usr/bin/mysqld --pid-file=/run/mysqld/mysqld.pid 
+ExecStartPost=/usr/bin/mysqld-post
+
+Restart=always
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

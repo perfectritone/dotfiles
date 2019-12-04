@@ -3,3 +3,4 @@
 	name = Dave Frey
 [core]
 	editor = vim
+	excludesfile = /home/muunbeam/.gitignore_global
