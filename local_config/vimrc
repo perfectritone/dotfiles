@@ -95,6 +95,9 @@ set backspace=indent,eol,start
 set nowrap
 set textwidth=0
 
+" Set tab maximum
+set tabpagemax=25
+
 " Visual shifting
 vnoremap < <gv
 vnoremap > >gv

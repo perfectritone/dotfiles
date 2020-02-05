@@ -48,4 +48,5 @@ fbn() { find . -iname \*$*\* }
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local
 fi
-source /usr/share/nvm/init-nvm.sh
+
+alias editlocal="vim ~/.zshrc-local;source ~/.zshrc-local"

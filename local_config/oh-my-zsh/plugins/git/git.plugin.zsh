@@ -46,6 +46,8 @@ alias gra='git rebase --abort'
 compdef _git gra=git-rebase
 alias grom='gf;git rebase -i origin/master'
 compdef _git grom=git-rebase
+alias gros='gf;git rebase -i origin/$(current_branch)'
+compdef _git gros=git-rebase
 alias gb='git blame'
 compdef _git gb=git-blame
 alias gba='git branch -a'
@@ -88,6 +90,7 @@ alias gg='git grep -nI'
 compdef _git gg=git-grep
 alias grh='git reset HEAD'
 alias grhh='git reset HEAD --hard'
+alias grhos='git reset origin/$(current_branch) --hard'
 alias gclean='git reset --hard && git clean -dfx'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 gshow() { git show --color "$1" | sed -r "s/^([^-+ ]*)[-+ ]/\\1/" | less -r }

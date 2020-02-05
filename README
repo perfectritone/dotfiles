@@ -1,1 +1,11 @@
 These are my config files
+
+# When backing up
+* Copy package list
+* Copy /usr/old_lib
+* Check `IgnorePkg` in /etc/pacman.conf
+* Copy /etc/hosts
+* Copy .zshrc-local
+* Copy yay
+* Copy code/*
+* Copy ssh keys

@@ -4,10 +4,13 @@
 
 # terminal emulator
 super + t
-	terminator
+	kitty
 
 super + f
 	firefox
+
+super + p
+  pkill -9 firefox
 
 super + a
   tor-browser-en
