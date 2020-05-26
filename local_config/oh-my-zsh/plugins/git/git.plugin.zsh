@@ -61,8 +61,6 @@ alias glga='git log --graph --decorate --stat'
 compdef _git glgga=git-log
 alias glo='git log --oneline'
 compdef _git glo=git-log
-alias gh='git log -p --'
-compdef _git gh=git-log
 
 alias gl='glga'
 compdef _git glg=git-log
@@ -90,7 +88,7 @@ alias gg='git grep -nI'
 compdef _git gg=git-grep
 alias grh='git reset HEAD'
 alias grhh='git reset HEAD --hard'
-alias grhos='git reset origin/$(current_branch) --hard'
+alias grhos='gf;git reset origin/$(current_branch) --hard'
 alias gclean='git reset --hard && git clean -dfx'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 gshow() { git show --color "$1" | sed -r "s/^([^-+ ]*)[-+ ]/\\1/" | less -r }
@@ -98,7 +96,7 @@ gshow() { git show --color "$1" | sed -r "s/^([^-+ ]*)[-+ ]/\\1/" | less -r }
 gdel() { git branch -d "$1" }
 gdelremote() { git push origin -d "$1" }
 gdwr() { gdel "$1";gdelremote "$1" }
-vgg() { vim -p $(git grep -nIl "$1" $2) }
+vgg() { vim -p $(git grep -nIl $1 $2) }
 gso() { gs --porcelain | sed 's/.. //' | tr '\n' ' ' | xargs zsh -c '</dev/tty vim -p "$@"' _ }
 alias vgs=gso
 
