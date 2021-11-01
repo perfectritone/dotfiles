@@ -4,3 +4,6 @@
 [core]
 	editor = vim
 	excludesfile = /home/muunbeam/.gitignore_global
+	attributesfile = /home/muunbeam/.gitattributes
+[alias]
+	shame = blame

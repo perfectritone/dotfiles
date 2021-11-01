@@ -3,7 +3,9 @@
 systemctl --user import-environment DISPLAY
 
 setxkbmap us -variant colemak -option caps:escape
+xrdb ~/.Xresources
 
 exec bspwm
+# exec gnome-session
 
 ~/.fehbg &

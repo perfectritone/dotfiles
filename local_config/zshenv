@@ -1,0 +1,1 @@
+alias current-eth-usd-price="curl -s https://coyneye.herokuapp.com/prices/eth_usd | jq -r '.price'"

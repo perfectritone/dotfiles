@@ -28,7 +28,7 @@ export CODE_DIR=$HOME/code
 export PATH="$HOME/.rbenv/bin:$HOME/pkgs/tfenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-eval `dircolors ~/.dircolors.ansi-light`
+#eval `dircolors ~/.dircolors.ansi-light`
 bindkey -v
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -41,12 +41,25 @@ alias x="setxkbmap us -variant colemak;xmodmap ~/.xmodmaprc"
 
 alias rinse="mplayer -playlist http://r3.dgen.net:8000/rinseradio.m3u -cache 100"
 alias webcam='mpv av://v4l2:/dev/video0' # press s to take picture
+alias screen-capture='ffmpeg -f x11grab -y -r 30 -s 1920x1080 -i :0.0 -vcodec huffyuv out.avi' # very high quality
 alias editgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh;source ~/.zshrc'
 alias n="cd $HOME/notes"
 fbn() { find . -iname \*$*\* }
 
 alias -s jpg=feh
 alias -s mkv=mpv
+alias -s mp4=mpv
+alias -s rb=vim
+alias -s pdf=mupdf
+
+alias bt="bluetoothctl -- power on;bluetoothctl -- connect B8:D5:0B:CF:4C:17"
+
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+test-internet() { while true; do ping -c 1 1.1.1.1; sleep 1; done }
+
+alias screenshot-output="convert label:@- output-screenshot.png"
+alias ten-biggest-dirs="du -hs */ | sort -hr | head"
 
 if [ -f ~/.zshrc-local ]; then
   source ~/.zshrc-local

@@ -19,9 +19,11 @@ compdef _git gc=git-commit
 alias gc!='git commit -v --amend'
 compdef _git gc!=git-commit
 alias gca='git commit --amend'
-compdef _git gc=git-commit
+compdef _git gca=git-commit
 alias gca!='git commit -v -a --amend'
 compdef _git gca!=git-commit
+alias gcat='git commit --amend --date="$(date -R)"'
+compdef _git gcat=git-commit
 alias gnb='git fetch;git checkout origin/master -b'
 compdef _git gnb=git-checkout-new-branch
 alias co='git checkout'
