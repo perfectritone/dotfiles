@@ -24,6 +24,9 @@ super + v
 super + m
   pragha
 
+#super + b
+#  kitty @ launch bluetuith
+
 super + q
   setxkbmap us
 
@@ -45,10 +48,6 @@ super + Escape
 # quit bspwm normally
 super + alt + Escape
 	bspc quit
-
-# poweroff
-super + b + Enter
-	poweroff
 
 # close and kill
 super + {_,shift + }w
@@ -206,6 +205,8 @@ shift + XF86AudioLowerVolume
   pulseaudio-ctl down
   # this should change the amplification of pamix
 
+Mod4 + Super_L
+  pragha --pause
 XF86AudioPlay
   pragha --pause
 

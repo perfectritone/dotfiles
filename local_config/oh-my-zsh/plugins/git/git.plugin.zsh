@@ -129,6 +129,12 @@ function current_branch() {
   echo ${ref#refs/heads/}
 }
 
+function current_branch_prompt() {
+  if [ -n current_branch ]; then
+    echo " ($(current_branch))"
+  fi
+}
+
 function current_repository() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
