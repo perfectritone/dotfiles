@@ -211,9 +211,9 @@ XF86AudioPlay
   pragha --pause
 
 XF86MonBrightnessUp
-  ~/code/intel_backlight_brightness/brightness.sh +
+  brightnessctl -e set 10%+
 XF86MonBrightnessDown
-  ~/code/intel_backlight_brightness/brightness.sh -
+  brightnessctl -e set 10%-
 
 super + b
   notify-send "$(acpi)"
