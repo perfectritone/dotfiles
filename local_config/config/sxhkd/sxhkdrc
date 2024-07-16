@@ -24,8 +24,8 @@ super + v
 super + m
   pragha
 
-#super + b
-#  kitty @ launch bluetuith
+super + o
+  kitty --hold -e bluetuith
 
 super + q
   setxkbmap us
@@ -74,6 +74,9 @@ super + g
 # 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 super + shift + {t,o,f}
 	bspc node -t {tiled,floating,fullscreen}
+
+F11
+  bspc node -t \~fullscreen
 
 # set the node flags
 super + ctrl + {x,y,z}

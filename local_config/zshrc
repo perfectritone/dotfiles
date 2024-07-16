@@ -28,10 +28,12 @@ export EDITOR="vim"
 export CODE_DIR=$HOME/code
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$HOME/pkgs/tfenv/bin:$PATH"
+# export PATH="$HOME/.rbenv/bin:$HOME/pkgs/tfenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # eval `dircolors ~/.dir_colors`
+
+# set vi mode for zsh
 bindkey -v
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -83,3 +85,13 @@ alias rebuild_ruby_ctags="git ls-files | ctags --links=no --languages=ruby -f .t
 
 alias light="kitten themes --reload-in=all Kaolin Breeze;echo 'set background=light' > ~/.vimrc.color"
 alias dark="kitten themes --reload-in=all Sakura Night;echo 'set background=dark' > ~/.vimrc.color"
+
+setopt SHARE_HISTORY
+export HISTFILE=$HOME/.zhistory
+export SAVEHIST=100000
+export HISTSIZE=9999
+setopt HIST_EXPIRE_DUPS_FIRST
+
+bindkey ^R history-incremental-search-backward
+
+alias restart-bluetooth="systemctl --user restart pipewire"
