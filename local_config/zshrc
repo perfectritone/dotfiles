@@ -84,11 +84,11 @@ alias rebuild_ruby_ctags="git ls-files | ctags --links=no --languages=ruby -f .t
 # want to be able to open new tab...idk how with vim
 
 alias light="
-  kitten themes --reload-in=all Kaolin Breeze
+  kitten themes --reload-in=all --cache-age -1 Kaolin Breeze
   echo 'set background=light' > ~/.vimrc.color
   feh --no-fehbg --bg-scale '/home/muunbeam/.main_1500.jpg'"
 alias dark="
-  kitten themes --reload-in=all Sakura Night
+  kitten themes --reload-in=all --cache-age -1 Sakura Night
   echo 'set background=dark' > ~/.vimrc.color
   feh --no-fehbg --bg-scale '/home/muunbeam/.main_1500_dark.jpg'"
 
@@ -101,3 +101,6 @@ setopt HIST_EXPIRE_DUPS_FIRST
 bindkey ^R history-incremental-search-backward
 
 alias restart-bluetooth="systemctl --user restart pipewire"
+alias restart-time="sudo systemctl start ntpd;sudo timedatectl set-ntp true;sudo timedatectl set-ntp false;"
+
+alias rubo="rubocop -A"

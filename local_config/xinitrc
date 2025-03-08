@@ -4,6 +4,7 @@ systemctl --user import-environment DISPLAY
 
 setxkbmap us -variant colemak -option caps:escape
 xrdb ~/.Xresources
+[ -f ~/.xprofile] && . ~/.xprofile
 
 exec bspwm
 # exec gnome-session
