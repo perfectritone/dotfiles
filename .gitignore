@@ -1,3 +1,4 @@
 zshrc-local
 bundle/cache
 pkglist*
+unpersisted_backup/*

@@ -9,4 +9,5 @@ These are my config files
 * Copy yay
 * Copy code/*
 * Copy ssh keys
+* Copy ~/.ssh/config
 * Copy /etc/sudoers
