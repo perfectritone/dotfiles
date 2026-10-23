@@ -1,6 +1,11 @@
-These are my config files
+# These are my config files
 
-# When backing up
+## Install config
+
+`rake install`
+
+## Outside of rake task
+
 * Copy package list
 * Copy /usr/old_lib
 * Check `IgnorePkg` in /etc/pacman.conf

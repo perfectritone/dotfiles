@@ -2,3 +2,7 @@ tags
 todo
 .tags
 notes
+docs/plans/*.md
+analysis/*
+
+**/.claude/settings.local.json

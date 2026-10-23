@@ -20,6 +20,7 @@ alias gc!='git commit -v --amend'
 compdef _git gc!=git-commit
 alias gca='git commit --amend'
 compdef _git gca=git-commit
+alias gcan='GIT_COMMITTER_DATE="$(date -Iseconds)" git commit --amend --no-edit --date="$(date -Iseconds)"'
 alias gca!='git commit -v -a --amend'
 compdef _git gca!=git-commit
 alias gcat='git commit --amend --date="$(date -R)"'
@@ -199,4 +200,3 @@ alias gignored='git ls-files -v | grep "^[[:lower:]]"'
 
 alias coom='co origin/master'
 alias gfom='gf;coom'
-alias comm='co master;git pull'

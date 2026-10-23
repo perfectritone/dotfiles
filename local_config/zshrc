@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 DISABLE_AUTO_UPDATE="true"
-plugins=(git bundler)
+plugins=(git bundler asdf)
 
 source $ZSH/oh-my-zsh.sh
 #source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
@@ -83,14 +83,34 @@ alias rebuild_ruby_ctags="git ls-files | ctags --links=no --languages=ruby -f .t
 # try starscope gem
 # want to be able to open new tab...idk how with vim
 
-alias light="
+function ff-dark() {
+  profile=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default*" | head -1)
+  sed -i "/ui.systemUsesDarkTheme/d; /prefers-color-scheme.content-override/d" "$profile/user.js" 2>/dev/null
+  echo "user_pref(\"ui.systemUsesDarkTheme\", 1);" >> "$profile/user.js"
+  echo "user_pref(\"layout.css.prefers-color-scheme.content-override\", 0);" >> "$profile/user.js"
+}
+
+function ff-light() {
+  profile=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default*" | head -1)
+  sed -i "/ui.systemUsesDarkTheme/d; /prefers-color-scheme.content-override/d" "$profile/user.js" 2>/dev/null
+  echo "user_pref(\"ui.systemUsesDarkTheme\", 0);" >> "$profile/user.js"
+  echo "user_pref(\"layout.css.prefers-color-scheme.content-override\", 1);" >> "$profile/user.js"
+}
+
+function light() {
   kitten themes --reload-in=all --cache-age -1 Kaolin Breeze
   echo 'set background=light' > ~/.vimrc.color
-  feh --no-fehbg --bg-scale '/home/muunbeam/.main_1500.jpg'"
-alias dark="
+  feh --no-fehbg --bg-scale '/home/muunbeam/.main_1500.jpg'
+  ff-light
+  printf "[Settings]\ngtk-application-prefer-dark-theme=1\n" | tee ~/.config/gtk-{3.0,4.0}/settings.ini > /dev/null
+}
+function dark() {
   kitten themes --reload-in=all --cache-age -1 Sakura Night
   echo 'set background=dark' > ~/.vimrc.color
-  feh --no-fehbg --bg-scale '/home/muunbeam/.main_1500_dark.jpg'"
+  feh --no-fehbg --bg-scale '/home/muunbeam/.main_1500_dark.jpg'
+  ff-dark
+  printf "[Settings]\ngtk-application-prefer-dark-theme=1\n" | tee ~/.config/gtk-{3.0,4.0}/settings.ini > /dev/null
+}
 
 setopt SHARE_HISTORY
 export HISTFILE=$HOME/.zhistory
@@ -104,3 +124,10 @@ alias restart-bluetooth="systemctl --user restart pipewire"
 alias restart-time="sudo systemctl start ntpd;sudo timedatectl set-ntp true;sudo timedatectl set-ntp false;"
 
 alias rubo="rubocop -A"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export DIRENV_LOG_FORMAT=" "
+eval "$(direnv hook zsh)"
+
+alias dcup="docker compose up -d"
+
+export DISABLE_AUTOUPDATER=1

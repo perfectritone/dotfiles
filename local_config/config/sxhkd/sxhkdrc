@@ -12,6 +12,9 @@ super + f
 super + p
   pkill -9 firefox;pkill -9 MainThread;pkill -9 GeckoMain;
 
+super + c
+  pkill -9 claude
+
 super + a
   tor-browser-en
 
@@ -216,6 +219,11 @@ XF86AudioPlay
 XF86MonBrightnessUp
   brightnessctl -e set 10%+
 XF86MonBrightnessDown
+  brightnessctl -e set 10%-
+
+super + alt + b
+  brightnessctl -e set 10%+
+super + alt + d
   brightnessctl -e set 10%-
 
 super + b
