@@ -29,14 +29,14 @@ export CODE_DIR=$HOME/code
 
 # rbenv
 # export PATH="$HOME/.rbenv/bin:$HOME/pkgs/tfenv/bin:$PATH"
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 # eval `dircolors ~/.dir_colors`
 
 # set vi mode for zsh
 bindkey -v
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [[ $DISPLAY ]] && source ~/.scripts/keyboard_off.sh
 

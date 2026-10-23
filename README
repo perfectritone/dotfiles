@@ -16,3 +16,11 @@
 * Copy ssh keys
 * Copy ~/.ssh/config
 * Copy /etc/sudoers
+
+## Install Arch Repo Packages
+
+`yay -S --needed - < pkglist-YYYY-MM-DD`
+
+## Other steps
+
+`sudo systemctl enable systemd-boot-update.service`
