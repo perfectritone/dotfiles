@@ -1,13 +1,40 @@
 require 'rake'
 require 'erb'
 
-desc "install the dot files into user's home directory"
-task :install do
+DISPLAY_SERVERS = %w[wayland x11]
+
+desc "install the dot files into user's home directory (display server: wayland (default) or x11)"
+task :install, [:display_server] do |_t, args|
+  display_server = args[:display_server] || 'wayland'
+  abort "unknown display server '#{display_server}', expected one of: #{DISPLAY_SERVERS.join(', ')}" unless DISPLAY_SERVERS.include?(display_server)
+
   install_oh_my_zsh
   switch_to_zsh
-  replace_all = false
 
-  Dir.chdir 'local_config'
+  @replace_all = false
+  install_dir 'local_config'
+  install_dir "local_config_#{display_server}"
+
+  print "\nWould you like to backup your package list? [yn]: "
+  case $stdin.gets.chomp
+  when 'y'
+    backup_system_packages
+  end
+
+  puts "\nManually copy the files from `root_config` and `root_config_#{display_server}` to their respective paths from `/`"
+end
+
+namespace :install do
+  DISPLAY_SERVERS.each do |display_server|
+    desc "install the dot files for #{display_server}"
+    task display_server do
+      Rake::Task[:install].invoke(display_server)
+    end
+  end
+end
+
+def install_dir(dir)
+  Dir.chdir dir
 
   all_files = Dir[File.join('**', '*')]
 
@@ -18,13 +45,13 @@ task :install do
     if File.exist?(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"))
       if File.identical? file, File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}")
         puts "identical ~/.#{file.sub(/\.erb$/, '')}"
-      elsif replace_all
+      elsif @replace_all
         replace_file(file)
       else
         print "overwrite ~/.#{file.sub(/\.erb$/, '')}? [ynaq] "
         case $stdin.gets.chomp
         when 'a'
-          replace_all = true
+          @replace_all = true
           replace_file(file)
         when 'y'
           replace_file(file)
@@ -40,14 +67,6 @@ task :install do
   end
 
   Dir.chdir '..'
-
-  print "\nWould you like to backup your package list? [yn]: "
-  case $stdin.gets.chomp
-  when 'y'
-    backup_system_packages
-  end
-
-  puts "\nManually copy the files from the `global_config` to their respective paths from `/``"
 end
 
 def replace_file(file)
