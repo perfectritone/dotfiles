@@ -26,3 +26,4 @@ set_built_in_keyboard_inhibited() {
 alias keyboard-off="set_built_in_keyboard_inhibited 1"
 alias keyboard-on="set_built_in_keyboard_inhibited 0"
 alias ko=keyboard-off
+alias kon=keyboard-on
