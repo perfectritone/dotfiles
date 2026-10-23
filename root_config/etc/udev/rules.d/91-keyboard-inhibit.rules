@@ -1,0 +1,5 @@
+# Let wheel toggle the built-in keyboard (see ~/.scripts/keyboard_off.sh)
+
+SUBSYSTEM=="input", ACTION=="add", ATTR{name}=="AT Translated Set 2 keyboard", \
+  RUN+="/bin/chgrp wheel /sys%p/inhibited", \
+  RUN+="/bin/chmod g+w /sys%p/inhibited"

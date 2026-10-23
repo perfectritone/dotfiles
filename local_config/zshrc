@@ -38,7 +38,7 @@ bindkey -v
 
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-[[ $DISPLAY ]] && source ~/.scripts/keyboard_off.sh
+[[ -f ~/.scripts/keyboard_off.sh ]] && source ~/.scripts/keyboard_off.sh
 
 alias zxcvb="sudo loadkeys us"
 alias z="setxkbmap us"
@@ -125,6 +125,7 @@ alias restart-time="sudo systemctl start ntpd;sudo timedatectl set-ntp true;sudo
 
 alias rubo="rubocop -A"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+eval "$(mise activate zsh)"
 export DIRENV_LOG_FORMAT=" "
 eval "$(direnv hook zsh)"
 
