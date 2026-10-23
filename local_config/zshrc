@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 DISABLE_AUTO_UPDATE="true"
-plugins=(git bundler asdf)
+plugins=(git bundler)
 
 source $ZSH/oh-my-zsh.sh
 #source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
@@ -41,8 +41,6 @@ bindkey -v
 [[ -f ~/.scripts/keyboard_off.sh ]] && source ~/.scripts/keyboard_off.sh
 
 alias zxcvb="sudo loadkeys us"
-alias z="setxkbmap us"
-alias x="setxkbmap us -variant colemak;xmodmap ~/.xmodmaprc"
 
 alias rinse="mplayer -playlist http://r3.dgen.net:8000/rinseradio.m3u -cache 100"
 alias webcam='mpv av://v4l2:/dev/video0' # press s to take picture
@@ -124,7 +122,6 @@ alias restart-bluetooth="systemctl --user restart pipewire"
 alias restart-time="sudo systemctl start ntpd;sudo timedatectl set-ntp true;sudo timedatectl set-ntp false;"
 
 alias rubo="rubocop -A"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 eval "$(mise activate zsh)"
 export DIRENV_LOG_FORMAT=" "
 eval "$(direnv hook zsh)"

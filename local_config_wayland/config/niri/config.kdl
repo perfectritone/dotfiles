@@ -9,7 +9,7 @@ input {
      // index 0 = colemak, index 1 = plain us (see Mod+Alt+Z / Mod+Alt+Q)
      layout "us,us"
      variant "colemak,"
-     options "ctrl:nocaps"
+     options "caps:escape"
     }  
   }
 }
