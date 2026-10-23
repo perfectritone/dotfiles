@@ -1,14 +1,43 @@
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
+spawn-at-startup "firefox"
+spawn-sh-at-startup "swaybg -m fill -i ~/.main_1500.jpg"
 
 input {
   keyboard {
    xkb {
-     layout "us"
-     variant "colemak"
+     // index 0 = colemak, index 1 = plain us (see Mod+Alt+Z / Mod+Alt+Q)
+     layout "us,us"
+     variant "colemak,"
      options "ctrl:nocaps"
     }  
   }
+}
+
+// bspwm: window_gap 0, border_width 2
+layout {
+    gaps 0
+    focus-ring { off; }
+    border {
+        on
+        width 2
+    }
+}
+
+// bspwm: spotify -> desktop I, slack -> desktop III
+workspace "music"
+workspace "chat"
+
+window-rule {
+    match app-id="(?i)spotify"
+    open-on-workspace "music"
+    open-focused true
+}
+
+window-rule {
+    match app-id="(?i)slack"
+    open-on-workspace "chat"
+    open-focused true
 }
 
 binds {
@@ -295,10 +324,46 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 
-    Mod+T { spawn "foot"; }
+    Mod+T { spawn "kitty"; }
+    Mod+Alt+T { spawn "foot"; }
     Mod+F { spawn "firefox"; }
     Mod+J { focus-window-or-workspace-down; }
     Mod+K { focus-window-or-workspace-up; }
+
+    // Ported from sxhkd: keys niri doesn't use keep their old binding.
+    Mod+A { spawn "tor-browser-en"; }
+    Mod+S { screenshot; }
+    Mod+P { spawn-sh "pkill -9 firefox; pkill -9 MainThread; pkill -9 GeckoMain"; }
+    Mod+Space { spawn "fuzzel"; }
+    Mod+B { spawn-sh "notify-send \"$(acpi)\""; }
+    Mod+E { spawn-sh "notify-send \"$(current-eth-usd-price)\""; }
+    Mod+Shift+W { close-window; }
+    F11 { fullscreen-window; }
+    Mod+Tab { focus-workspace-previous; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    // Ported from sxhkd: keys that clash with niri defaults moved to Mod+Alt.
+    Mod+Alt+C { spawn "pkill" "-9" "claude"; }
+    Mod+Alt+V { spawn "vlc"; }
+    Mod+Alt+M { spawn "pragha"; }
+    Mod+Alt+O { spawn "kitty" "--hold" "-e" "bluetuith"; }
+    Mod+Alt+W { close-window; }
+    Mod+Alt+D { spawn-sh "notify-send \"$(date)\""; }
+    Mod+Alt+U { spawn-sh "notify-send \"$(date)\"; notify-send \"$(acpi)\"; notify-send \"$(current-eth-usd-price)\""; }
+    Mod+Alt+Q { spawn "niri" "msg" "action" "switch-layout" "1"; }
+    Mod+Alt+Z { spawn "niri" "msg" "action" "switch-layout" "0"; }
+    Mod+Alt+B allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    Mod+Ctrl+Alt+D allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+    Shift+XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.5"; }
+    Shift+XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
 }
 
 hotkey-overlay {
